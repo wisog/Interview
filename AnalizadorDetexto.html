@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ejercicio 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+              background: #555;
+            }
+            
+        .content {
+              max-width: 500px;
+              margin: auto;
+              background: white;
+              padding: 10px;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1 align='center'>ANALIZADOR DE TEXTO</h1>
+        <h2>ENTRADA: </h2>
+        <input type="text" id="entrada" placeholder="(x1,y1)texto(x2,y2)texto" required><br>
+        <button onclick="generar()">GENERAR</button>
+        <script>
+            function generar() {
+                var entrada = document.getElementById("entrada").value; //VALOR DE ENTRADA 
+                var salida = ""; // VARIABLE QUE GUARDARA LA SALIDA 
+                var cordenada = ""; //UBICA LAS CADENAS DE COORDENADAS
+                for (i = 0; i < entrada.length; i++) {    
+                    if (entrada[i] == "(") { 
+                        cordenada = "(";
+                        i++;
+                        while (isNaN(entrada[i]) == false || entrada[i] == ",") {  //EVALUA QUE TODOS LOS VALORES SEAN NUMERICOS
+                            cordenada = cordenada + entrada[i];
+                            i++;
+                        }
+                        if (entrada[i] == ")" && isNaN(entrada[i - 1]) == false) { //EVALUA QUE SE CIERRE LA COORDENADA Y QUE NO HAYA LETRA
+                            cordenada = "\n" + cordenada + ") ";              
+
+                        }
+                        salida = salida + cordenada;         //AGRUPAN LAS CADENAS PARA DAR LA SALIDA 
+                    } else {
+                        salida = salida + entrada[i];
+                    }
+                    console.log("Salida: " + salida);     // VALOR DE SALIDA 
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>

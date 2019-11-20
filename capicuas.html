@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ejercicio 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+              background: #555;
+            }
+            
+        .content {
+              max-width: 500px;
+              margin: auto;
+              background: white;
+              padding: 10px;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h1 align='center'>CAPICUAS</h1>
+        <h2>ENTRADA: </h2>
+        <input type="number" id="entrada" placeholder="NUMERO ENTERO" required><br>
+        <button onclick="generar()">GENERAR</button>
+        <script>
+            function generar() {
+                var entrada = document.getElementById("entrada").value;  //VARIABLE DE ENTRADA 
+                var capicua = false;           //CENTINELA PARA EVALUAR QUE SE CUMPA LA CAPICUA
+                var n1 = entrada;   
+                var n2 = entrada.split("").reverse().join("");
+                var cont = 0 ;                 //NUMERO DE ITERACIONES
+                while(!capicua){
+                    eval = parseInt(n1) + parseInt(n2);      //OPERACION DE SUMA DE NUMEROS 
+                    cont++;
+                    if(eval.toString() == eval.toString().split("").reverse().join("")){   //EVALUA LA CAPICUA
+                        capicua = true;
+                    }else{
+                        n1 = eval;                                       //EN CASO DE NO CUMPLIRSE DA LOS VALORES DE LA ITERACION PASADA
+                        n2 = n1.toString().split("").reverse().join("");
+                    }
+                }
+                console.log("NC: " + eval + " Ni: " + cont ); //VARIABLE DE SALIDA 
+            }
+        </script>
+    </div>
+</body>
+
+</html>
