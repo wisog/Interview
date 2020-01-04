@@ -14,6 +14,20 @@
 </body>
 <script>
   console.log("----Analizador Léxico----");
+  let entrada = prompt('Ingrese el texto', '(71,21)Hola(12,32)Mundo(10,32)Hola');
+  if (entrada.length > 250) {
+    alert("El texto debe ser menor a 250 caracteres");
+  }else{
+    let coordenadas = entrada.match(/(\()(\d+|-\d+|(\+)\d+),(\d+|-\d+|(\+)\d+)(\))/g);
+    // Se determina que la coordenada cumpla con su estructura: Empezando y cerrando con parentesis,
+    // comilla en medio, y los dos numeros, ya sean positivos(ya implicito sin signo de +) o negativos.
+      var salida = "El texto tiene "+coordenadas.length+" cordenadas:\n\n";
+      for (var coordenada in coordenadas) {
+        console.log(coordenadas[coordenada]);
+        salida += coordenadas[coordenada] + "\n";
+      }
+      alert(salida);
+  }
 </script>
 
 </html>
