@@ -21,11 +21,20 @@
     let coordenadas = entrada.match(/(\()(\d+|-\d+|(\+)\d+),(\d+|-\d+|(\+)\d+)(\))/g);
     // Se determina que la coordenada cumpla con su estructura: Empezando y cerrando con parentesis,
     // comilla en medio, y los dos numeros, ya sean positivos(ya implicito sin signo de +) o negativos.
+    var textos = entrada.split(/[(\d+|-\d+|(\+)\d+)(\,)(\d+|-\d+|(\+)\d+)]+/);
+    // Se determinan los textos de cada coordenada haciendo separaciones con el mismo patron match,
+    // este tuvo leves moficaciones al no funcionar como es devido.
+    // Como resultado funciona, pero si en el texto se encuentran parentesis deja este de funcionar correctamente.
+    // Tratar con la entrada "(71,21)Hola(6 veces)(12,32)Mundo(tierra)(10,32)Hola"
+    textos.splice(0, 1);
+    // Textos tendra un valor de mas que coordenadas(puede ser texto o un '')
+    // Este se quita de lo contrario en una entrada como "Inicio(71,21)Hola(12,32)Mundo(10,32)Hola"
+    // A la coordenada (71,21) se le asignaria la palabra Inicio
       var salida = "El texto tiene "+coordenadas.length+" cordenadas:\n\n";
       for (var coordenada in coordenadas) {
-        console.log(coordenadas[coordenada]);
-        salida += coordenadas[coordenada] + "\n";
+        salida += coordenadas[coordenada] + " " + textos[coordenada++] + " \n";
       }
+      console.log(salida);
       alert(salida);
   }
 </script>
