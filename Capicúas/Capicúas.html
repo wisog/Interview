@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Capicúas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <center>
+    <h1>Capicúas</h1>
+  </center>
+</body>
+<script src="funciones.js"></script>
+<script>
+  console.log("-------Capicúas-------");
+  let numero_random = (Math.round(Math.random() * 9989) + 10);
+  let entrada = parseInt(prompt('Ingrese el numero(10 al 9999)', numero_random));
+  if (entrada < 9 || entrada > 10000)
+    alert("El numero debe estar en el rango del 10 al 9999");
+  else {
+    var numero_capicua = entrada;
+    var interaccion = 1;
+    var interaccion_final = false;
+    while (!interaccion_final) {
+      // en cada interaccion while la variable numero_capicua se suma con su inverso,
+      // se valida que el resultado es igual a su inverso, si no lo es 
+      // el resultado pasa a la siguiente interaccion y se suma 1 en la interaccion
+      numero_capicua = numero_capicua + parseInt(String(numero_capicua).reverse());
+      if (numero_capicua == String(numero_capicua).reverse()) {
+        var salida = numero_capicua + " " + interaccion;
+        interaccion_final = true;
+      } else
+        interaccion++;
+    }
+    console.log(salida);
+    alert(salida);
+  }
+</script>
+
+</html>

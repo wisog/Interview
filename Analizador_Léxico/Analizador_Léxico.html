@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Analizador Léxico</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <center>
+    <h1>Analizador Léxico</h1>
+  </center>
+</body>
+<script src="funciones.js"></script>
+<script>
+  console.log("----Analizador Léxico----");
+  let entrada = prompt('Ingrese el texto', '(71,21)Hola(6 veces)(12,32)Mundo(tierra)(10,32)Hola(Hello)(71,21)Hola(6 veces)');
+  if (entrada.length > 250) {
+    alert("El texto debe ser menor a 250 caracteres");
+  }else{
+    let coordenadas = entrada.match(/(\()(\d+|-\d+|(\+)\d+),(\d+|-\d+|(\+)\d+)(\))/g);
+    // Se determina que la coordenada cumpla con su estructura: Empezando y cerrando con parentesis,
+    // comilla en medio, y los dos numeros, ya sean positivos(ya implicito sin signo de +) o negativos.
+    var textos = Splitmultiple(entrada, coordenadas);
+    // Se determinan los textos de cada coordenada haciendo separaciones con con las mismas coordenadas.
+    textos.splice(0, 1);
+    // Textos tendra un valor de mas que coordenadas(puede ser texto o un '')
+    // Este se quita de lo contrario en una entrada como "Inicio(71,21)Hola(12,32)Mundo(10,32)Hola"
+    // Sin esta operacion a la coordenada (71,21) se le asignaria la palabra Inicio
+      var salida = "El texto tiene "+coordenadas.length+" cordenadas:\n\n";
+      for (var coordenada in coordenadas) {
+        salida += coordenadas[coordenada] + " " + textos[coordenada++] + " \n";
+      }
+      console.log(salida);
+      alert(salida);
+  }
+</script>
+
+</html>
