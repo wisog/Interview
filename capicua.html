@@ -1,0 +1,53 @@
+<html>
+ <script>
+ //Uso el metodo para poner al reves la cadena digitada
+   String.prototype.reverse=function(){return this.split("").reverse().join("");}
+
+function testCapCua(numero) {
+//Lo imprimo en la consola
+parseInt(numero,'10');
+if(numero <9 || numero >10000)
+{
+  alert('Numero fuera de rango');
+}
+else{
+ console.log(numero);
+ numero=numero.toString();
+ //Uso la funcion para invertir el numero dado
+ var inverseNum = numero.reverse();
+ //Hago la suma de los numeros y lo guardo en una variable
+ var res=parseInt(numero)+parseInt(inverseNum);
+ //Hago string para invertir el numero
+ res=res.toString();
+ var inverseRes= res.reverse(); 
+ //Y los hago enteros para una proxima suma
+ res=parseInt(res,'10');
+ inverseRes=parseInt(inverseRes,'10');
+ //Inicializo en contador
+ var n=1;
+  do{
+    //Veo si en la primera suma se logro el numero Capicua
+    if(res==inverseRes){
+      console.log(res+' '+n);
+      n=0;
+    }
+    //Sino lo vuelvo a sumar
+    else{
+      //Y los hago enteros para una proxima suma
+      res=parseInt(res)+parseInt(inverseRes);
+      res=res.toString();
+      inverseRes=res.reverse();
+      n++;
+    }
+  }while(n!=0)
+}
+} 
+ </script>
+
+ <body>
+  <input type="text" placeholder="Introducir numero de dos digitos." id="input-word" />
+  <input type="button" onclick="testCapCua(document.getElementById('input-word').value)" value="Comprobar"/>
+ </body>
+ 
+
+</html>
